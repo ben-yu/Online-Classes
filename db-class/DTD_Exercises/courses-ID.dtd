@@ -1,0 +1,24 @@
+<!ELEMENT Course_Catalog (Department*)>
+<!ELEMENT Department (Title,Course+,(Lecturer | Professor)*)>
+<!ATTLIST Department Code ID #REQUIRED>
+<!ATTLIST Department Chair IDREFS #REQUIRED>
+<!ELEMENT Code (#PCDATA)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Chair (Professor)>
+<!ELEMENT Professor (First_Name,Middle_Initial?,Last_Name)>
+<!ATTLIST Professor InstrID ID #REQUIRED>
+<!ELEMENT Lecturer (First_Name,Middle_Initial?,Last_Name)>
+<!ATTLIST Lecturer InstrID ID #REQUIRED>
+<!ELEMENT First_Name (#PCDATA)>
+<!ELEMENT Middle_Initial (#PCDATA)>
+<!ELEMENT Last_Name (#PCDATA)>
+<!ELEMENT Course (Title, Description?)>
+<!ATTLIST Course Number ID #REQUIRED>
+<!ATTLIST Course Instructors IDREFS #REQUIRED>
+<!ATTLIST Course Enrollment CDATA #IMPLIED>
+<!ATTLIST Course Prerequisites IDREFS #IMPLIED>
+<!ELEMENT Description ANY>
+<!ELEMENT Courseref EMPTY>
+<!ATTLIST Courseref Number IDREF #REQUIRED>
+<!ELEMENT Instructors (Lecturer | Professor)* >
+<!ELEMENT Prereq (#PCDATA)>
