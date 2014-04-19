@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="jar://$MODULE_DIR$/lib_managed/jars/org.scalatest/scalatest_2.10/scalatest_2.10-1.9.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib_managed/jars/org.scala-lang/scala-actors/scala-actors-2.10.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib_managed/jars/org.scala-lang/scala-reflect/scala-reflect-2.10.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib_managed/jars/junit/junit/junit-4.10.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib_managed/jars/org.hamcrest/hamcrest-core/hamcrest-core-1.1.jar!/" />
+    <conelement value="org.scala-ide.sdt.launching.SCALA_CONTAINER" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src/main/scala" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/src/test/scala" expected_position="1" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/bin" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/scala" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.scala-ide.sdt.launching.SCALA_CONTAINER" level="application" />
+    <orderEntry type="module-library">
+      <library name="scalatest_2.10-1.9.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib_managed/jars/org.scalatest/scalatest_2.10/scalatest_2.10-1.9.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="scala-actors-2.10.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib_managed/jars/org.scala-lang/scala-actors/scala-actors-2.10.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="scala-reflect-2.10.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib_managed/jars/org.scala-lang/scala-reflect/scala-reflect-2.10.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="junit-4.10.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib_managed/jars/junit/junit/junit-4.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="hamcrest-core-1.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib_managed/jars/org.hamcrest/hamcrest-core/hamcrest-core-1.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="inheritedJdk" />
+  </component>
+</module>
+
