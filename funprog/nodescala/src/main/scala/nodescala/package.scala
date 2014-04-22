@@ -30,7 +30,13 @@ package object nodescala {
      *  The values in the list are in the same order as corresponding futures `fs`.
      *  If any of the futures `fs` fails, the resulting future also fails.
      */
-    def all[T](fs: List[Future[T]]): Future[List[T]] = ???
+    def all[T](fs: List[Future[T]]): Future[List[T]] = {
+      val successful = Promise[List[T]]()
+      successful.success(Nil)
+      fs.foldRight(successful.future) {
+        (f, acc) => for { x <- f; xs <- acc } yield x :: xs
+      }
+    }
 
     /** Given a list of futures `fs`, returns the future holding the value of the future from `fs` that completed first.
      *  If the first completing future in `fs` fails, then the result is failed as well.
@@ -49,7 +55,7 @@ package object nodescala {
 
     /** Returns a future with a unit value that is completed after time `t`.
      */
-    def delay(t: Duration): Future[Unit] = ???
+    def delay(t: Duration): Future[Unit] = future { blocking(Thread.sleep(t.toMillis))}
 
     /** Completes this future with user input.
      */
@@ -75,7 +81,7 @@ package object nodescala {
      *  However, it is also non-deterministic -- it may throw or return a value
      *  depending on the current state of the `Future`.
      */
-    def now: T = ???
+    def now: T = Await.result(f, Duration("-1"))
 
     /** Continues the computation of this future by taking the current future
      *  and mapping it into another future.
@@ -83,7 +89,16 @@ package object nodescala {
      *  The function `cont` is called only after the current future completes.
      *  The resulting future contains a value returned by `cont`.
      */
-    def continueWith[S](cont: Future[T] => S): Future[S] = ???
+    def continueWith[S](cont: Future[T] => S): Future[S] = {
+      val p = Promise[S]()
+      f.onComplete {
+        // Call cont after f completes successfully
+        case Success(v) => try cont(f) catch { case NonFatal(t) => p failure t }
+        // Fail gracefully if future fails
+        case f: Failure[_] => p complete f.asInstanceOf[Failure[S]]
+      }
+      p.future
+    }
 
     /** Continues the computation of this future by taking the result
      *  of the current future and mapping it into another future.
@@ -91,7 +106,19 @@ package object nodescala {
      *  The function `cont` is called only after the current future completes.
      *  The resulting future contains a value returned by `cont`.
      */
-    def continue[S](cont: Try[T] => S): Future[S] = ???
+    def continue[S](cont: Try[T] => S): Future[S] = {
+      val p = Promise[S]()
+      f.onComplete {
+        // Call cont after f completes successfully
+        case Success(v) => f.value match { 
+	        case Some(x) => p success cont(x)
+	        case None => p complete f.asInstanceOf[Failure[S]]
+        }
+        // Fail gracefully if future fails
+        case f: Failure[_] => p complete f.asInstanceOf[Failure[S]]
+      }
+      p.future
+    }
 
   }
 
