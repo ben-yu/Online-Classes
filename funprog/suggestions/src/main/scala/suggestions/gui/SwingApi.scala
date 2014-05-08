@@ -54,19 +54,19 @@ trait SwingApi {
       * @return an observable with a stream of text field updates
       */
     def textValues: Observable[String] = {
-		  Observable { observer =>
-		      // Reaction callback from textfield
-		      val react = Reaction {
-		    	  	// Push text change to observer
-			      	case  ValueChanged(tf) => observer.onNext(tf.text)
-		      }
-		      // Subscribe field to callback 
-		      field.subscribe(react)
-		      // Return a new Subscription for field to unsubscribe
-		      Subscription {
-		        field.unsubscribe(react)
-		      }
-		  }
+	  Observable { observer =>
+	      // Reaction callback from textfield
+	      val react = Reaction {
+	    	  	// Push text change to observer
+		      	case  ValueChanged(tf) => observer.onNext(tf.text)
+	      }
+	      // Subscribe field to callback 
+	      field.subscribe(react)
+	      // Return a new Subscription for field to unsubscribe
+	      Subscription {
+	        field.unsubscribe(react)
+	      }
+	  }
     }
 
   }
@@ -79,19 +79,19 @@ trait SwingApi {
      * @return an observable with a stream of buttons that have been clicked
      */
     def clicks: Observable[Button] = {
-		  Observable { observer =>
-		      // Reaction callback from button
-		      val react = Reaction {
-		    	  	// Push text change to observer
-			      	case  ButtonClicked(bc) => observer.onNext(button)
-		      }
-		      // Subscribe field to callback 
-		      button.subscribe(react)
-		      // Return a new Subscription for field to unsubscribe
-		      Subscription {
-		        button.unsubscribe(react)
-		      }
-		  }
+	  Observable { observer =>
+	      // Reaction callback from button
+	      val react = Reaction {
+	    	  	// Push text change to observer
+		      	case  ButtonClicked(bc) => observer.onNext(button)
+	      }
+	      // Subscribe field to callback 
+	      button.subscribe(react)
+	      // Return a new Subscription for field to unsubscribe
+	      Subscription {
+	        button.unsubscribe(react)
+	      }
+	  }
     }
 
   }
